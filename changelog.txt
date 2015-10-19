@@ -1,0 +1,12 @@
+# 68c834b6d7e5588254b585c06b43959cb54b3e4c
+
+## FEATURE
+
+	* Add commit title, body and tag inputs to the commitizen template
+
+# 420ae8b94b5d9893d12973a16fabccf0dae2743e
+
+## FEATURE
+
+	* Introducing a simple git log parser bin to help create changelogsg
+

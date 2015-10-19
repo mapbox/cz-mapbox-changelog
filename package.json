@@ -4,7 +4,8 @@
   "description": "A commitizen plugin and git log parsing tool to create readable changelogs",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "new-change": "OLD=$(cat last-version) && NEW=$(git rev-parse HEAD) && echo '# '$NEW'\n' >> changelog.txt && git log $OLD..$NEW | ./bin/parse-git-log >> changelog.txt && echo $NEW > last-version"
   },
   "license": "BSD-3-Clause",
   "czConfig": {
