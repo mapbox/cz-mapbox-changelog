@@ -30,3 +30,10 @@ Then add the below json block to your package.json.
   "path": "node_modules/cz-mapbox-changelog"
 }
 ```
+
+## Parsing Git Log
+
+Changelog ships with a simple parser tool that will read the output of `git log` and output a list of commits grouped by their category. For more info on how to limit `git log` to only output the commits that are new to your next release, use `git log <OLD_VERSION>..<NEW_VERSION>` where `OLD_VERSION` and `NEW_VERSION` are git shas or tags.
+
+`git log | ./node_modules/cz-mapbox-changelog/bin/parse-git-log >> changelog.txt`
+

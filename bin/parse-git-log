@@ -1,0 +1,47 @@
+#!/usr/bin/env node
+
+var buffer = '';
+
+var commitsByCategory = {};
+
+function parseCommit(commit){
+	var data = commit.split(/\n[\s]*\n/);
+
+	var title = data[1].trim();
+	var body = data.slice(1).join('\n').trim();
+	var category = data[data.length-1].trim().match(/^\[[A-Za-z\-]*\]$/) ? data[data.length-1].trim().replace('[', '').replace(']', '') : '[UNCATEGORIZED]';
+
+	commitsByCategory[category] = commitsByCategory[category] || [];
+
+	commitsByCategory[category].push({
+		title: title,
+		body: body,
+		category: category
+	});
+}
+
+process.stdin.on('data', function(chunk){
+	buffer += chunk.toString();
+
+	var index;
+	while((index = buffer.indexOf('\ncommit ', 1)) > -1){
+		var commit = buffer.substr(0, index);
+		buffer = buffer.substr(index);
+		parseCommit(commit);
+	}
+});
+
+process.stdin.on('end', function(){
+	if(buffer !== ''){
+		parseCommit(buffer);
+	}
+	var categories = Object.keys(commitsByCategory);
+	for(var i=0; i<categories.length; i++){
+		var category = categories[i];
+		process.stdout.write('## ' + category+'\n\n');
+		for(var j=0; j<commitsByCategory[category].length; j++){
+			process.stdout.write('\t* '+commitsByCategory[category][j].title+'\n');
+		}
+		process.stdout.write('\n');
+	}
+});
