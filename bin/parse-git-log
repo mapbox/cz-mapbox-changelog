@@ -38,7 +38,7 @@ process.stdin.on('end', function(){
 	var categories = Object.keys(commitsByCategory);
 	for(var i=0; i<categories.length; i++){
 		var category = categories[i];
-		process.stdout.write('## ' + category+'\n\n');
+		process.stdout.write('### ' + category+'\n\n');
 		for(var j=0; j<commitsByCategory[category].length; j++){
 			process.stdout.write('\t* '+commitsByCategory[category][j].title+'\n');
 		}
