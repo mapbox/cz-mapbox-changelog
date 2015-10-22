@@ -12,11 +12,11 @@
 
 # 76a85ddf41f63ce6b7d86f1db4bd876ebc344213
 
-### BUG
+## BUG
 
 	* use h3 instead of h2s for categories
 
-### INTERNAL
+## INTERNAL
 
 	* Dog fooding with a sha based versioning system
 

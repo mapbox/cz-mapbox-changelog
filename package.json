@@ -5,13 +5,17 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "new-change": "OLD=$(cat last-version) && NEW=$(git rev-parse HEAD) && echo '# '$NEW'\n' >> changelog.txt && git log $OLD..$NEW | ./bin/parse-git-log >> changelog.txt && echo $NEW > last-version"
+    "new-change": "OLD=$(cat last-version) && NEW=$(git rev-parse HEAD) && echo '# '$NEW'\n' >> changelog.txt && git log $OLD..$NEW | ./bin/parse-git-log --filter-out=UNCATEGORIZED >> changelog.txt && echo $NEW > last-version"
   },
   "license": "BSD-3-Clause",
   "czConfig": {
     "path": "./"
   },
   "dependencies": {
-    "word-wrap": "^1.1.0"
+    "word-wrap": "^1.1.0",
+    "yargs": "^3.29.0"
+  },
+  "bin": {
+    "parse-git-log": "./bin/parse-git-log"
   }
 }
