@@ -56,7 +56,7 @@ process.stdin.on('end', function(){
 		if(categoriesToIgnore.indexOf(category) === -1){
 			process.stdout.write(header+' ' + category+'\n\n');
 			for(var j=0; j<commitsByCategory[category].length; j++){
-				process.stdout.write('\t* '+commitsByCategory[category][j].title+'\n');
+				process.stdout.write('* '+commitsByCategory[category][j].title+'\n');
 			}
 			process.stdout.write('\n');
 		}
