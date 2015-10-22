@@ -1,6 +1,6 @@
 {
   "name": "cz-mapbox-changelog",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A commitizen plugin and git log parsing tool to create readable changelogs",
   "main": "index.js",
   "scripts": {
