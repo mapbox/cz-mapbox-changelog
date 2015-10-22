@@ -1,5 +1,10 @@
 #!/usr/bin/env node
 
+var argv = require('yargs')
+	.default('filterOut', '')
+	.default('headerSize', '3')
+	.argv;
+
 var buffer = '';
 
 var commitsByCategory = {};
@@ -9,7 +14,7 @@ function parseCommit(commit){
 
 	var title = data[1].trim();
 	var body = data.slice(1).join('\n').trim();
-	var category = data[data.length-1].trim().match(/^\[[A-Za-z\-]*\]$/) ? data[data.length-1].trim().replace('[', '').replace(']', '') : '[UNCATEGORIZED]';
+	var category = data[data.length-1].trim().match(/^\[[A-Za-z\-]*\]$/) ? data[data.length-1].trim().replace('[', '').replace(']', '').toUpperCase() : 'UNCATEGORIZED';
 
 	commitsByCategory[category] = commitsByCategory[category] || [];
 
@@ -35,13 +40,26 @@ process.stdin.on('end', function(){
 	if(buffer !== ''){
 		parseCommit(buffer);
 	}
+
+	var categoriesToIgnore = argv.filterOut.toUpperCase().split(',');
+	var headerSize = parseInt(argv.headerSize);
+
+	var header = '';
+	for(var i=0; i<headerSize; i++){
+		header+='#';
+	}
+
 	var categories = Object.keys(commitsByCategory);
 	for(var i=0; i<categories.length; i++){
 		var category = categories[i];
-		process.stdout.write('### ' + category+'\n\n');
-		for(var j=0; j<commitsByCategory[category].length; j++){
-			process.stdout.write('\t* '+commitsByCategory[category][j].title+'\n');
+
+		if(categoriesToIgnore.indexOf(category) === -1){
+			process.stdout.write(header+' ' + category+'\n\n');
+			for(var j=0; j<commitsByCategory[category].length; j++){
+				process.stdout.write('\t* '+commitsByCategory[category][j].title+'\n');
+			}
+			process.stdout.write('\n');
 		}
-		process.stdout.write('\n');
+
 	}
 });
