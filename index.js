@@ -49,7 +49,7 @@ module.exports = {
             value: 'UI'
           },
           {
-            name: 'Feature: a feature adition',
+            name: 'Feature: a feature addition',
             value: 'FEATURE'
           },
           {
