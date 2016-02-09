@@ -17,5 +17,9 @@
   },
   "bin": {
     "parse-git-log": "./bin/parse-git-log"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mapbox/cz-mapbox-changelog.git"
   }
 }
