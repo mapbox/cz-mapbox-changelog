@@ -1,6 +1,6 @@
 # Commitizen Mapbox Changelog
 
-This is a [commitizen](http://commitizen.github.io/cz-cli/) plugin to make the writting of commit messages consistant across a repo.
+This is a [commitizen](http://commitizen.github.io/cz-cli/) plugin to make the writing of commit messages consistent across a repo.
 
 ## Usage
 
