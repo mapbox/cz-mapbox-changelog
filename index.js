@@ -70,7 +70,7 @@ module.exports = {
           }
         ]
       },
-    ], function(answers) {
+    ]).then(function(answers) {
 
       var maxLineWidth = 80;
 

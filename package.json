@@ -8,8 +8,10 @@
     "new-change": "OLD=$(cat last-version) && NEW=$(git rev-parse HEAD) && echo '# '$NEW'\n' >> CHANGELOG.md && git log $OLD..$NEW | ./bin/parse-git-log --filter-out=UNCATEGORIZED >> CHANGELOG.md && echo $NEW > last-version"
   },
   "license": "BSD-3-Clause",
-  "czConfig": {
-    "path": "./"
+  "config": {
+    "commitizen": {
+      "path": "./index.js"
+    }
   },
   "dependencies": {
     "word-wrap": "^1.1.0",
