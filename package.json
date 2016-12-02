@@ -1,5 +1,5 @@
 {
-  "name": "cz-mapbox-changelog",
+  "name": "@mapbox/cz-mapbox-changelog",
   "version": "1.1.2",
   "description": "A commitizen plugin and git log parsing tool to create readable changelogs",
   "main": "index.js",
